@@ -1,0 +1,134 @@
+{
+  "bpm": 96.0,
+  "meter": "4/4",
+  "key": "A Minor",
+  "sections": [
+    {
+      "start": 0.0,
+      "end": 60.0,
+      "label": "A"
+    }
+  ],
+  "chords": [
+    {
+      "start": 0.0,
+      "end": 2.5,
+      "chord": "Am"
+    },
+    {
+      "start": 2.5,
+      "end": 5.0,
+      "chord": "Dm"
+    },
+    {
+      "start": 5.0,
+      "end": 7.5,
+      "chord": "E"
+    },
+    {
+      "start": 7.5,
+      "end": 10.0,
+      "chord": "Am"
+    },
+    {
+      "start": 10.0,
+      "end": 12.5,
+      "chord": "F"
+    },
+    {
+      "start": 12.5,
+      "end": 15.0,
+      "chord": "Dm"
+    },
+    {
+      "start": 15.0,
+      "end": 17.5,
+      "chord": "E"
+    },
+    {
+      "start": 17.5,
+      "end": 20.0,
+      "chord": "E"
+    },
+    {
+      "start": 20.0,
+      "end": 22.5,
+      "chord": "Am"
+    },
+    {
+      "start": 22.5,
+      "end": 25.0,
+      "chord": "Dm"
+    },
+    {
+      "start": 25.0,
+      "end": 27.5,
+      "chord": "E"
+    },
+    {
+      "start": 27.5,
+      "end": 30.0,
+      "chord": "Am"
+    },
+    {
+      "start": 30.0,
+      "end": 32.5,
+      "chord": "F"
+    },
+    {
+      "start": 32.5,
+      "end": 35.0,
+      "chord": "Dm"
+    },
+    {
+      "start": 35.0,
+      "end": 37.5,
+      "chord": "E"
+    },
+    {
+      "start": 37.5,
+      "end": 40.0,
+      "chord": "E"
+    },
+    {
+      "start": 40.0,
+      "end": 42.5,
+      "chord": "Am"
+    },
+    {
+      "start": 42.5,
+      "end": 45.0,
+      "chord": "Dm"
+    },
+    {
+      "start": 45.0,
+      "end": 47.5,
+      "chord": "E"
+    },
+    {
+      "start": 47.5,
+      "end": 50.0,
+      "chord": "Am"
+    },
+    {
+      "start": 50.0,
+      "end": 52.5,
+      "chord": "F"
+    },
+    {
+      "start": 52.5,
+      "end": 55.0,
+      "chord": "Dm"
+    },
+    {
+      "start": 55.0,
+      "end": 57.5,
+      "chord": "E"
+    },
+    {
+      "start": 57.5,
+      "end": 60.0,
+      "chord": "E"
+    }
+  ]
+}

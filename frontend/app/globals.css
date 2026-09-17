@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+/* SongScope is a dark-first tool; tokens are defined once and consumed by role. */
+:root {
+  color-scheme: dark;
+  --bg: #08080a;
+  --bg-elev: #0f0f12;
+  --card: #131316;
+  --card-2: #18181c;
+  --line: #24242a;
+  --line-strong: #34343c;
+  --text: #f3f2ee;
+  --text-2: #b9b8c0;
+  --text-3: #8a8993;
+  --violet: #8b7bff;
+  --violet-strong: #6e5cf6;
+  --cyan: #3ad3e0;
+  --amber: #f5b54a;
+
+  /* data-viz: validated categorical slots (dark steps), fixed order */
+  --series-1: #3987e5;
+  --series-2: #d95926;
+  --series-3: #199e70;
+  --series-4: #c98500;
+  --series-5: #d55181;
+  --series-6: #008300;
+  --series-7: #9085e9;
+  --series-8: #e66767;
+  --series-other: #6b6a66;
+
+  /* status (never used as series colours; always paired with icon + label) */
+  --good: #0ca30c;
+  --warning: #fab219;
+  --critical: #d03b3b;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-elev: var(--bg-elev);
+  --color-card: var(--card);
+  --color-card-2: var(--card-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--text);
+  --color-ink-2: var(--text-2);
+  --color-ink-3: var(--text-3);
+  --color-violet: var(--violet);
+  --color-violet-strong: var(--violet-strong);
+  --color-cyan: var(--cyan);
+  --color-amber: var(--amber);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-syne);
+}
+
+html {
+  background: var(--bg);
+}
+
+body {
+  background:
+    radial-gradient(1200px 600px at 85% -10%, rgba(139, 123, 255, 0.09), transparent 60%),
+    radial-gradient(900px 500px at -10% 10%, rgba(58, 211, 224, 0.05), transparent 60%),
+    var(--bg);
+  color: var(--text);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-feature-settings: "ss01", "cv11";
+}
+
+::selection {
+  background: rgba(139, 123, 255, 0.35);
+}
+
+:focus-visible {
+  outline: 2px solid var(--violet);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+}
+
+/* WaveSurfer shadow-DOM scrollbar colour */
+.waveform-host ::part(scroll) {
+  scrollbar-color: var(--line-strong) transparent;
+}
+
+@keyframes pulse-bar {
+  0%, 100% { transform: scaleY(0.35); }
+  50% { transform: scaleY(1); }
+}
+
+.eq-bar {
+  animation: pulse-bar 1.1s ease-in-out infinite;
+  transform-origin: bottom;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eq-bar { animation: none; }
+  * { scroll-behavior: auto !important; }
+}
+
+input[type="range"].slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--line-strong);
+}
+input[type="range"].slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: var(--text);
+  border: 0;
+}
+input[type="range"].slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: var(--text);
+  border: 0;
+}

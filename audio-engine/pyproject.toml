@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "songscope-engine"
+version = "1.0.0"
+description = "SongScope audio analysis engine (tempo, meter, key, chords, structure, pitch, loudness)"
+requires-python = ">=3.11"
+dependencies = [
+  "numpy>=1.26",
+  "scipy>=1.11",
+  "librosa>=0.10.2",
+  "soundfile>=0.12",
+  "soxr>=0.3",
+  "pyloudnorm>=0.1.1",
+  "scikit-learn>=1.3",
+  "mutagen>=1.47",
+  "imageio-ffmpeg>=0.5",
+]
+
+[project.optional-dependencies]
+stems = ["torch>=2.2", "demucs>=4.0.1"]
+test = ["pytest>=8"]
+
+[tool.setuptools.packages.find]
+include = ["songscope_engine*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

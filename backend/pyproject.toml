@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "songscope-api"
+version = "1.0.0"
+description = "SongScope FastAPI backend and job worker"
+requires-python = ">=3.11"
+dependencies = [
+  "songscope-engine",
+  "fastapi[standard]>=0.115",
+  "sqlalchemy>=2.0",
+  "psycopg[binary]>=3.2",
+  "pydantic-settings>=2.4",
+  "yt-dlp>=2025.1.1",
+  "reportlab>=4.2",
+  "anthropic>=1.6",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8", "httpx>=0.27"]
+
+[tool.setuptools.packages.find]
+include = ["songscope_api*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

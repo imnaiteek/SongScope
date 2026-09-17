@@ -1,0 +1,71 @@
+name: songscope
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: songscope
+      POSTGRES_USER: songscope
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-songscope}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U songscope -d songscope"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: .
+      dockerfile: docker/backend.Dockerfile
+      args:
+        INSTALL_STEMS: ${INSTALL_STEMS:-false}
+    env_file: .env
+    environment:
+      SONGSCOPE_DATABASE_URL: postgresql+psycopg://songscope:${POSTGRES_PASSWORD:-songscope}@postgres:5432/songscope
+      SONGSCOPE_EMBEDDED_WORKER: "false"
+      SONGSCOPE_CORS_ORIGINS: ${SONGSCOPE_CORS_ORIGINS:-http://localhost:3000}
+    volumes:
+      - jobdata:/data
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  worker:
+    build:
+      context: .
+      dockerfile: docker/backend.Dockerfile
+      args:
+        INSTALL_STEMS: ${INSTALL_STEMS:-false}
+    command: ["python", "-m", "songscope_api.worker"]
+    env_file: .env
+    environment:
+      SONGSCOPE_DATABASE_URL: postgresql+psycopg://songscope:${POSTGRES_PASSWORD:-songscope}@postgres:5432/songscope
+    volumes:
+      - jobdata:/data
+    depends_on:
+      postgres:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "4"
+          memory: 6g
+
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/frontend.Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8000}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+
+volumes:
+  pgdata:
+  jobdata:
