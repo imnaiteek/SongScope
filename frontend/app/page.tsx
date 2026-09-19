@@ -50,7 +50,7 @@ export default function Home() {
             <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-line bg-card px-3 py-1 text-xs font-medium text-ink-2">
               <Radio size={13} className="text-cyan" aria-hidden /> Technical Music Analysis
             </p>
-            <h1 className="font-display text-[2.6rem] font-extrabold leading-[0.95] tracking-tight [overflow-wrap:anywhere] sm:text-6xl lg:text-[3.5rem] xl:text-7xl">
+            <h1 className="font-display text-[2.25rem] font-extrabold leading-[0.95] tracking-tight sm:text-6xl lg:text-[3rem] xl:text-7xl">
               Understand
               <br />
               <span className="bg-gradient-to-r from-violet via-[#a99bff] to-cyan bg-clip-text text-transparent">Any Song.</span>
