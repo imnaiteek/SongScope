@@ -158,6 +158,7 @@ def _run_analysis(job_id: str, analysis_id: str) -> None:
         source_path, yt = download_audio(
             meta["youtube"]["video_id"], str(work), max_bytes=settings.max_upload_bytes,
             max_duration=settings.max_duration_seconds, cookies_file=settings.youtube_cookies_file,
+            force_ipv4=settings.youtube_force_ipv4,
             progress=dl_progress,
         )
         meta.update({"title": yt.get("title"), "artist": yt.get("artist") or yt.get("channel"),

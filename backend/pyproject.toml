@@ -13,7 +13,8 @@ dependencies = [
   "sqlalchemy>=2.0",
   "psycopg[binary]>=3.2",
   "pydantic-settings>=2.4",
-  "yt-dlp>=2025.1.1",
+  "yt-dlp>=2025.11.12",
+  "yt-dlp-ejs>=0.3",
   "reportlab>=4.2",
   "anthropic>=1.6",
 ]

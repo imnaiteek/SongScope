@@ -90,7 +90,8 @@ def map_error(message: str) -> YouTubeError:
 
 
 def download_audio(video_id: str, dest_dir: str, *, max_bytes: int, max_duration: int,
-                   cookies_file: str | None = None, progress=None) -> tuple[str, dict]:
+                   cookies_file: str | None = None, force_ipv4: bool = True,
+                   progress=None) -> tuple[str, dict]:
     import yt_dlp
 
     url = canonical_url(video_id)
@@ -118,7 +119,10 @@ def download_audio(video_id: str, dest_dir: str, *, max_bytes: int, max_duration
         "quiet": True,
         "no_warnings": True,
         "noprogress": True,
-        "socket_timeout": 30,
+        "socket_timeout": 20,
+        # YouTube needs a JavaScript runtime to solve its player challenges (solver: yt-dlp-ejs);
+        # the highest-priority runtime that is installed is used.
+        "js_runtimes": {"deno": {}, "node": {}},
         "retries": 2,
         "fragment_retries": 2,
         "concurrent_fragment_downloads": 1,
@@ -129,6 +133,10 @@ def download_audio(video_id: str, dest_dir: str, *, max_bytes: int, max_duration
         "cachedir": False,
         "logger": _SilentLogger(),
     }
+    if force_ipv4:
+        # Many networks advertise IPv6 but cannot route it to YouTube; yt-dlp then hangs on
+        # connection retries instead of falling back to IPv4.
+        opts["source_address"] = "0.0.0.0"
     if cookies_file and os.path.isfile(cookies_file):
         opts["cookiefile"] = cookies_file
     try:
