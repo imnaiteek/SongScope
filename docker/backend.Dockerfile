@@ -7,7 +7,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     NUMBA_CACHE_DIR=/tmp/numba-cache
 
 RUN apt-get update \
- && apt-get install -y --no-install-recommends ffmpeg libsndfile1 \
+ && apt-get install -y --no-install-recommends ffmpeg libsndfile1 nodejs \
  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app

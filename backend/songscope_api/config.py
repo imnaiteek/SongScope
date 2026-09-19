@@ -31,6 +31,7 @@ class Settings(BaseSettings):
 
     enable_youtube: bool = True
     youtube_cookies_file: str | None = None
+    youtube_force_ipv4: bool = True
 
     enable_stems: bool = True
     stems_model: str = "htdemucs"
